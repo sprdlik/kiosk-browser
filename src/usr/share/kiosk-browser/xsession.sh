@@ -45,8 +45,8 @@ done
     cat /etc/resolv.conf
     perl -e '$/ = undef; $d=<>; $d =~ m/.*(lease {.*?})$/s ; print $1' $(ps ax | grep dhclient | sed -ne "s/.* \(\/[^ ]\+\.lease[s]\?\).*/\1/p") <<<""
     echo
-    echo "This message will self-destruct in 60 seconds"
-} | osd_cat --pos bottom --align left --colour green --outline 2 --font 10x20 --lines 50 --delay 60 &
+    echo "This message will self-destruct in 10 seconds"
+} | osd_cat --pos bottom --align left --colour green --outline 2 --font 10x20 --lines 50 --delay 10 &
 
 disown -a # forget about running osd_cat, it will terminate itself anyway
 
@@ -140,7 +140,7 @@ if (( KIOSK_BROWSER_WATCHDOG_TIMEOUT > 0 )) ; then
     ) </dev/null 1>&2 &
 fi
 
-if [[ "$KIOSK_BROWSER_SHOW_SYSTEM_MONITOR" ]] ; then
+if [[ "$KIOSK_BROWSER_SHOW_SYSTEM_MONITOR" = "yes" ]] ; then
     xosview &
 fi
 
